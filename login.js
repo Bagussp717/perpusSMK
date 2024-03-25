@@ -32,7 +32,8 @@ const AdminLogin = (req, res) => {
             if (!loginTokens[username]) {
               loginTokens[username] = [];
             }
-            loginTokens[username].push(token);            
+            loginTokens[username].push(token);   
+            res.set("Access-Control-Allow-Origin", "*");
             res.cookie('token', token, { httpOnly: true });
             res.status(200).json({ 
               message: 'Login successful',
@@ -109,6 +110,7 @@ const UserLogin =  (req, res) => {
               loginTokens[username] = [];
             }
             loginTokens[username].push(token);
+            res.set("Access-Control-Allow-Origin", "*");
             res.cookie('token', token, { httpOnly: true });
             res.status(200).json({
               redirectUrl: `/${user.no_induk}/buku/daftarbuku`,
